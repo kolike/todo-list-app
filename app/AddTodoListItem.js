@@ -1,14 +1,16 @@
-function TodoListItemAdd() {
+function AddTodoListItem() {
   return (
     <>
       <div>
         <input type="text" placeholder="add something..." />
         <button>Create Task</button>
-        <input type="checkbox" />
-        important?
+        <div>
+          important task?
+          <input type="checkbox" />
+        </div>
       </div>
     </>
   );
 }
 
-export default TodoListItemAdd;
+export default AddTodoListItem;
