@@ -28,13 +28,13 @@ function AddTodoListItem() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <button>Create Task</button>
+          <button type="submit">Create Task</button>
           <div>
             important task?
             <input
               type="checkbox"
               value={isImportant}
-              onChange={() => setIsImportant(!isImportant)}
+              onChange={() => setIsImportant((isImportant) => !isImportant)}
             />
           </div>
         </div>
