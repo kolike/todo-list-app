@@ -1,46 +1,44 @@
 'use client';
-
+import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
 function AddTodoListItem() {
-  const [inputValue, setInputValue] = useState('');
-  const [importantValue, setImportantValue] = useState(false);
+  const [content, setContent] = useState('');
+  const [isImportant, setIsImportant] = useState(false);
 
-  const createNewTask = () => {
-    const newTask = {
-      content: inputValue,
-      important: importantValue,
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const newTodo = {
+      id: uuidv4(),
+      content,
+      isImportant,
     };
-    return newTask;
+    console.log('NewTodo: ', newTodo);
   };
 
   return (
     <>
-      <div>
-        <input
-          required
-          name="name"
-          type="text"
-          placeholder="add something..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            console.log('newTask: ', createNewTask());
-          }}
-        >
-          Create Task
-        </button>
+      <form onSubmit={onSubmitHandler}>
         <div>
-          important task?
           <input
-            type="checkbox"
-            value={inputValue}
-            onChange={() => setImportantValue(!importantValue)}
+            required
+            name="name"
+            type="text"
+            placeholder="add something..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
+          <button>Create Task</button>
+          <div>
+            important task?
+            <input
+              type="checkbox"
+              value={isImportant}
+              onChange={() => setIsImportant(!isImportant)}
+            />
+          </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
