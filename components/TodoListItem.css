@@ -1,0 +1,10 @@
+.is-done {
+    text-decoration: line-through;
+}
+.in-progress {
+    text-decoration:none;
+}
+
+.todo-item {
+    display:flex;
+}

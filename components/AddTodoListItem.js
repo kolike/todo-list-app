@@ -1,19 +1,20 @@
-'use client';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-function AddTodoListItem() {
+const AddTodoListItem = (props) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    const { setData } = props;
+
     const newTodo = {
       id: uuidv4(),
       content,
       isImportant,
     };
-    console.log('NewTodo: ', newTodo);
+    setData((data) => [...data, newTodo]);
   };
 
   return (
@@ -41,6 +42,6 @@ function AddTodoListItem() {
       </form>
     </>
   );
-}
+};
 
 export default AddTodoListItem;
