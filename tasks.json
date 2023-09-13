@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "content": "walk the dog",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "buy coffee",
+      "important": false
+    },
+    {
+      "id": 3,
+      "content": "fuck Meredith",
+      "important": false
+    }
+  ]
+}

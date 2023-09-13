@@ -1,5 +1,5 @@
-import TodoList from './TodoList';
-import AddTodoListItem from './AddTodoListItem';
+import TodoList from '../components/TodoList';
+import AddTodoListItem from '../components/AddTodoListItem';
 
 export default function Page() {
   return (
