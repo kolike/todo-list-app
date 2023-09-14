@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import './addTodoListItem.css';
 const AddTodoListItem = ({ onAdd }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
@@ -17,8 +19,8 @@ const AddTodoListItem = ({ onAdd }) => {
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
-        <div>
+      <form onSubmit={onSubmitHandler} className="todo-add">
+        <div className="todo-add-item">
           <input
             required
             name="name"
@@ -27,8 +29,10 @@ const AddTodoListItem = ({ onAdd }) => {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <button type="submit">Create Task</button>
-          <div>
+          <Button type="submit" variant="success">
+            Create Task
+          </Button>
+          <div className="todo-add-item">
             important task?
             <input
               type="checkbox"

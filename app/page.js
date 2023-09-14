@@ -2,6 +2,7 @@
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Page = () => {
   const initialData = [
@@ -47,7 +48,7 @@ const Page = () => {
 
   return (
     <>
-      <h1>Todo List App!</h1>
+      <h1 style={{ marginLeft: 40 + 'px' }}>Todo List App!</h1>
       <AddTodoListItem onAdd={addTodo} />
       <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
     </>
