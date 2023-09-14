@@ -1,8 +1,7 @@
-'use client';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-function AddTodoListItem() {
+const AddTodoListItem = ({ onAdd }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
@@ -13,7 +12,7 @@ function AddTodoListItem() {
       content,
       isImportant,
     };
-    console.log('NewTodo: ', newTodo);
+    onAdd(newTodo);
   };
 
   return (
@@ -41,6 +40,6 @@ function AddTodoListItem() {
       </form>
     </>
   );
-}
+};
 
 export default AddTodoListItem;
