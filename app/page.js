@@ -48,7 +48,7 @@ const Page = () => {
   return (
     <>
       <h1>Todo List App!</h1>
-      <AddTodoListItem addTodo={addTodo} />
+      <AddTodoListItem onAdd={addTodo} />
       <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
     </>
   );
