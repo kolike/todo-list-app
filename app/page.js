@@ -30,11 +30,11 @@ const Page = () => {
     setData((data) => data.filter((item) => item.id !== id));
   };
 
-  const onAdd = (newTodo) => {
+  const addTodo = (newTodo) => {
     setData((data) => [...data, newTodo]);
   };
 
-  const toggleIsDone = (id) => {
+  const onToggle = (id) => {
     setData((data) =>
       data.map((item) => {
         if (item.id === id) {
@@ -48,8 +48,8 @@ const Page = () => {
   return (
     <>
       <h1>Todo List App!</h1>
-      <AddTodoListItem onAdd={onAdd} />
-      <TodoList data={data} onDelete={deleteTodo} onToggle={toggleIsDone} />
+      <AddTodoListItem addTodo={addTodo} />
+      <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
     </>
   );
 };

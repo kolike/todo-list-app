@@ -1,16 +1,16 @@
 import './TodoListItem.css';
 
 const TodoListItem = (props) => {
-  const { id, content, isImportant, isDone, onDelete, onToggle } = props;
+  const { content, isImportant, isDone, onDelete, onToggle } = props;
   return (
     <>
       <div className="todo-item">
-        {isImportant ? <input type="checkbox" checked disabled /> : null}
-
-        <div onClick={() => onToggle()} className={isDone ? 'is-done' : 'in-progress'}>
+        <div className={isDone ? 'is-done' : 'in-progress'}>
+          <input type="checkbox" onChange={onToggle} />
           {content}
+          {isImportant ? '(!!!)' : null}
         </div>
-        <button onClick={() => onDelete(id)}>Remove</button>
+        <button onClick={onDelete}>Remove</button>
       </div>
     </>
   );

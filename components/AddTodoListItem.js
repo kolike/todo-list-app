@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-const AddTodoListItem = ({ onAdd }) => {
+const AddTodoListItem = ({ addTodo }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
@@ -12,7 +12,7 @@ const AddTodoListItem = ({ onAdd }) => {
       content,
       isImportant,
     };
-    onAdd(newTodo);
+    addTodo(newTodo);
   };
 
   return (
