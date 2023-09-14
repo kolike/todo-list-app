@@ -1,6 +1,6 @@
 import TodoListItem from './TodoListItem';
 
-const TodoList = ({ data, onDelete, ontoggle }) => {
+const TodoList = ({ data, onDelete, onToggle }) => {
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
     return (
@@ -8,7 +8,7 @@ const TodoList = ({ data, onDelete, ontoggle }) => {
         key={id}
         {...itemProps}
         onDelete={() => onDelete(id)}
-        ontoggle={() => ontoggle(id)}
+        onToggle={() => onToggle(id)}
       />
     );
   });

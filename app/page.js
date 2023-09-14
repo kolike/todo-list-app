@@ -1,7 +1,7 @@
 'use client';
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Page = () => {
   const initialData = [
@@ -26,12 +26,16 @@ const Page = () => {
   ];
   const [data, setData] = useState(initialData);
 
-  const deleteToto = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const deleteTodo = (id) => {
+    setData((data) => data.filter((item) => item.id !== id));
+  };
+
+  const onAdd = (newTodo) => {
+    setData((data) => [...data, newTodo]);
   };
 
   const toggleIsDone = (id) => {
-    setData(
+    setData((data) =>
       data.map((item) => {
         if (item.id === id) {
           return { ...item, isDone: !item.isDone };
@@ -44,8 +48,8 @@ const Page = () => {
   return (
     <>
       <h1>Todo List App!</h1>
-      <AddTodoListItem data={data} setData={setData} />
-      <TodoList data={data} onDelete={deleteToto} ontoggle={toggleIsDone} />
+      <AddTodoListItem onAdd={onAdd} />
+      <TodoList data={data} onDelete={deleteTodo} onToggle={toggleIsDone} />
     </>
   );
 };

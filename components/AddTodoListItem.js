@@ -1,20 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-const AddTodoListItem = (props) => {
+const AddTodoListItem = ({ onAdd }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const { setData } = props;
-
     const newTodo = {
       id: uuidv4(),
       content,
       isImportant,
     };
-    setData((data) => [...data, newTodo]);
+    onAdd(newTodo);
   };
 
   return (

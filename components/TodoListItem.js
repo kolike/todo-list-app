@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import './TodoListItem.css';
 
 const TodoListItem = (props) => {
-  const { id, content, isImportant, isDone, onDelete, ontoggle } = props;
-
+  const { id, content, isImportant, isDone, onDelete, onToggle } = props;
   return (
     <>
       <div className="todo-item">
-        {isImportant ? '(!!!)' : null}
-        <div onClick={() => ontoggle(id)} className={isDone ? 'is-done' : 'in-progress'}>
+        {isImportant ? <input type="checkbox" checked disabled /> : null}
+
+        <div onClick={() => onToggle()} className={isDone ? 'is-done' : 'in-progress'}>
           {content}
         </div>
         <button onClick={() => onDelete(id)}>Remove</button>
