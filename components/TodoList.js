@@ -1,4 +1,12 @@
 import TodoListItem from './TodoListItem';
+import styled from 'styled-components';
+
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+`;
 
 const TodoList = ({ data, onDelete, onToggle }) => {
   const elements = data.map((item) => {
@@ -12,7 +20,8 @@ const TodoList = ({ data, onDelete, onToggle }) => {
       />
     );
   });
-  return <ul>{elements}</ul>;
+
+  return <List>{elements}</List>;
 };
 
 export default TodoList;
