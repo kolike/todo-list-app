@@ -2,7 +2,19 @@
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
 import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const Page = () => {
   const initialData = [
@@ -25,6 +37,7 @@ const Page = () => {
       isDone: false,
     },
   ];
+
   const [data, setData] = useState(initialData);
 
   const deleteTodo = (id) => {
@@ -47,11 +60,13 @@ const Page = () => {
   };
 
   return (
-    <>
-      <h1 style={{ marginLeft: 40 + 'px' }}>Todo List App!</h1>
-      <AddTodoListItem onAdd={addTodo} />
-      <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
-    </>
+    <Container>
+      <h1>Todo List App!</h1>
+      <Content>
+        <AddTodoListItem onAdd={addTodo} />
+        <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
+      </Content>
+    </Container>
   );
 };
 

@@ -1,6 +1,12 @@
 import TodoListItem from './TodoListItem';
-import './todoList.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components';
+
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+`;
 
 const TodoList = ({ data, onDelete, onToggle }) => {
   const elements = data.map((item) => {
@@ -14,11 +20,8 @@ const TodoList = ({ data, onDelete, onToggle }) => {
       />
     );
   });
-  return (
-    <div className="todo-list">
-      <ul> {elements} </ul>
-    </div>
-  );
+
+  return <List>{elements}</List>;
 };
 
 export default TodoList;
