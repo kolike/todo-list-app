@@ -18,6 +18,11 @@ const SubmitButton = styled.button`
   background-color: rgba(10, 20, 250, 0.7);
   color: white;
   border-radius: 3px;
+  &:hover {
+    -webkit-text-shadow: 1px 1px 1px #fff;
+    -moz-text-shadow: 1px 1px 1px #fff;
+    text-shadow: 1px 1px 1px #fff;
+  }
 `;
 
 const AddTodoListItem = ({ onAdd }) => {
@@ -52,9 +57,9 @@ const AddTodoListItem = ({ onAdd }) => {
           value={isImportant}
           onChange={() => setIsImportant((isImportant) => !isImportant)}
         />
-        <label for="isImportant">Important task?</label>
+        <label for="isImportant">Important todo?</label>
       </Row>
-      <SubmitButton type="submit">Create Task</SubmitButton>
+      <SubmitButton type="submit">Create Todo</SubmitButton>
     </Form>
   );
 };

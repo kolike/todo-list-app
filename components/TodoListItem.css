@@ -1,0 +1,6 @@
+.isDone {
+    text-decoration: line-through 
+}
+.isImportant{
+    color:red;
+}
