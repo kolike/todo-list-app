@@ -27,7 +27,7 @@ const Page = () => {
     setData((data) => [...data, newTodo]);
   };
 
-  const onToggle = (id) => {
+  const toggleTodo = (id) => {
     setData((data) =>
       data.map((item) => {
         if (item.id === id) {
@@ -44,7 +44,7 @@ const Page = () => {
       <Content>
         <AddTodoListItem onAdd={addTodo} />
         {data.length === 0 ? <h3>Todo list is empty</h3> : null}
-        <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
+        <TodoList data={data} onDelete={deleteTodo} onToggle={toggleTodo} />
       </Content>
     </Container>
   );

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import './TodoListItem.css';
 
 const Container = styled.div`
   display: flex;
@@ -14,8 +13,8 @@ const Container = styled.div`
 `;
 
 const Row = styled.div`
-  text-decoration: ${(props) => (props.isDone ? 'line-through' : 'none')};
-  color: ${(props) => (props.isImportant ? 'red' : 'black')};
+  text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
+  color: ${(props) => (props.$isImportant ? 'red' : 'black')};
   display: flex;
   flex-direction: row;
 `;
@@ -37,7 +36,7 @@ const TodoListItem = (props) => {
 
   return (
     <Container>
-      <Row isDone={isDone} isImportant={isImportant}>
+      <Row $isDone={isDone} $isImportant={isImportant}>
         <input type="checkbox" onChange={onToggle} />
         {content}
         {isImportant ? '(!!!)' : null}
