@@ -42,7 +42,7 @@ const AddTodoListItem = ({ onAdd }) => {
 
   return (
     <Form onSubmit={onSubmitHandler}>
-      <label for="content">Describe your Todo</label>
+      <label htmlFor="content">Describe your Todo</label>
       <input
         id="content"
         required
@@ -58,7 +58,7 @@ const AddTodoListItem = ({ onAdd }) => {
           value={isImportant}
           onChange={() => setIsImportant((isImportant) => !isImportant)}
         />
-        <label for="isImportant">Important Todo?</label>
+        <label htmlFor="isImportant">Important task?</label>
       </Row>
       <SubmitButton type="submit">Create Todo</SubmitButton>
     </Form>
