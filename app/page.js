@@ -17,28 +17,7 @@ const Content = styled.div`
 `;
 
 const Page = () => {
-  const initialData = [
-    {
-      id: 1,
-      content: 'walk the dog',
-      isImportant: true,
-      isDone: false,
-    },
-    {
-      id: 2,
-      content: 'buy coffee',
-      isImportant: false,
-      isDone: false,
-    },
-    {
-      id: 3,
-      content: 'fuck Meredith',
-      isImportant: false,
-      isDone: false,
-    },
-  ];
-
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
@@ -64,6 +43,7 @@ const Page = () => {
       <h1>Todo List App!</h1>
       <Content>
         <AddTodoListItem onAdd={addTodo} />
+        {data.length === 0 ? <h3>Todo list is empty</h3> : null}
         <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
       </Content>
     </Container>
