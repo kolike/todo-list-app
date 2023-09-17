@@ -37,7 +37,7 @@ const TodoListItem = (props) => {
   return (
     <Container>
       <Row $isDone={isDone} $isImportant={isImportant}>
-        <input type="checkbox" onChange={onToggle} />
+        <input type="checkbox" onChange={onToggle} checked={isDone} value={''} />
         {content}
         {isImportant ? '(!!!)' : null}
       </Row>
