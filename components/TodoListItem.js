@@ -13,8 +13,8 @@ const Container = styled.div`
 `;
 
 const Row = styled.div`
-  text-decoration: ${(props) => (props.isDone ? 'line-through' : 'none')};
-  color: ${(props) => (props.isImportant ? 'red' : 'black')};
+  text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
+  color: ${(props) => (props.$isImportant ? 'red' : 'black')};
   display: flex;
   flex-direction: row;
 `;
