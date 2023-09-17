@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import './TodoListItem.css';
 
 const Container = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ const TodoListItem = (props) => {
 
   return (
     <Container>
-      <Row isDone={isDone} isImportant={isImportant}>
+      <Row $isDone={isDone} $isImportant={isImportant}>
         <input type="checkbox" onChange={onToggle} />
         {content}
         {isImportant ? '(!!!)' : null}
