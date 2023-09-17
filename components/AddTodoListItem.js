@@ -15,13 +15,14 @@ const Row = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  background-color: rgba(10, 20, 250, 0.7);
-  color: white;
+  background-color: white;
+  color: rgba(10, 20, 250, 0.7);
   border-radius: 3px;
+  border-color: rgba(10, 20, 250, 0.7);
   &:hover {
-    -webkit-text-shadow: 1px 1px 1px #fff;
-    -moz-text-shadow: 1px 1px 1px #fff;
-    text-shadow: 1px 1px 1px #fff;
+    background-color: rgba(10, 20, 250, 0.7);
+    color: white;
+    border-color: black;
   }
 `;
 
@@ -57,7 +58,7 @@ const AddTodoListItem = ({ onAdd }) => {
           value={isImportant}
           onChange={() => setIsImportant((isImportant) => !isImportant)}
         />
-        <label for="isImportant">Important todo?</label>
+        <label for="isImportant">Important Todo?</label>
       </Row>
       <SubmitButton type="submit">Create Todo</SubmitButton>
     </Form>

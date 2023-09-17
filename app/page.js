@@ -43,7 +43,7 @@ const Page = () => {
       <h1>Todo List App!</h1>
       <Content>
         <AddTodoListItem onAdd={addTodo} />
-        {data[0] === undefined ? <h3>Todo list is empty</h3> : null}
+        {data.length === 0 ? <h3>Todo list is empty</h3> : null}
         <TodoList data={data} onDelete={deleteTodo} onToggle={onToggle} />
       </Content>
     </Container>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import classNames from 'classnames';
 import './TodoListItem.css';
 
 const Container = styled.div`
@@ -7,37 +6,38 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
-  border-bottom: 1px solid #3d5a80;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  &:hover {
-    -webkit-text-shadow: 1px 1px 1px #000;
-    -moz-text-shadow: 1px 1px 1px #000;
-    text-shadow: 1px 1px 1px #000;
+  align-items: center;
+    &:hover {
+      border-radius: 10px;
+    background-color:rgba(300, 200, 100 ,0.5) }} 
   }
 `;
 
+const Row = styled.div`
+  text-decoration: ${(props) => (props.isDone ? 'line-through' : 'none')};
+  color: ${(props) => (props.isImportant ? 'red' : 'black')};
+  display: flex;
+  flex-direction: row;
+`;
+
 const RemoveButton = styled.button`
-  background-color: rgba(250, 20, 10, 0.7);
-  color: white;
+  background-color: white;
+  color: rgba(250, 20, 10, 0.7);
   border-radius: 3px;
+  border-color: rgba(250, 20, 10, 0.7);
   &:hover {
-    -webkit-text-shadow: 1px 1px 1px #fff;
-    -moz-text-shadow: 1px 1px 1px #fff;
-    text-shadow: 1px 1px 1px #fff;
+    background-color: rgba(250, 20, 10, 0.7);
+    color: white;
+    border-color: black;
   }
 `;
 
 const TodoListItem = (props) => {
   const { content, isImportant, isDone, onDelete, onToggle } = props;
-  const isDoneClassName = classNames({ isImportant: isImportant }, { isDone: isDone });
 
   return (
     <Container>
-      <Row className={isDoneClassName}>
+      <Row isDone={isDone} isImportant={isImportant}>
         <input type="checkbox" onChange={onToggle} />
         {content}
         {isImportant ? '(!!!)' : null}
