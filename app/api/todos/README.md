@@ -1,22 +1,22 @@
 # API Documentation
 
-## `GET /todos`
+## `GET /api/todos`
 
 ### Returns array of Todos
 
-## `POST /todos/add`
+## `POST /api/todos/add`
 
 ### Add a new Todo
 
 ### Returns array of Todos
 
-## `POST /todos/{id}`
+## `POST /api/todos/{id}`
 
 ### Update an existing Todo
 
 ### Returns array of Todos
 
-## `DELETE /todos/{id}`
+## `DELETE /api/todos/{id}`
 
 ### Delete an existing Todo
 
