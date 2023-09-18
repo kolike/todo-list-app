@@ -19,7 +19,6 @@ const Content = styled.div`
 const Page = () => {
   const [data, setData] = useState([]);
   const [activeTab, setActiveTab] = useState('all');
-  const [dataItemCounter, setDataItemCounter] = useState(0);
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
@@ -69,7 +68,6 @@ const Page = () => {
           onToggle={toggleTodo}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          dataItemCounter={dataItemCounter}
         />
       </Content>
     </Container>

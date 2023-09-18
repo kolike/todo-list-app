@@ -24,10 +24,7 @@ const TodoList = ({ data, onDelete, onToggle, activeTab, setActiveTab, dataItemC
 
   return (
     <>
-      {dataItemCounter > 0 ? (
-        <FiltersTodoList activeTab={activeTab} setActiveTab={setActiveTab} />
-      ) : null}
-
+      <FiltersTodoList activeTab={activeTab} setActiveTab={setActiveTab} />
       {data.length > 0 ? <List>{elements}</List> : <h3>Todo list is empty</h3>}
     </>
   );
