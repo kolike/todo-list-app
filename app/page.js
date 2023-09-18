@@ -1,7 +1,7 @@
 'use client';
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
-import FilterTodoList from '@/components/FilterTodoList';
+import FiltersTodoList from '@/components/FiltersTodoList';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -19,14 +19,17 @@ const Content = styled.div`
 
 const Page = () => {
   const [data, setData] = useState([]);
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = useState('all');
+  const [dataItemCounter, setDataItemCounter] = useState(0);
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
+    setDataItemCounter((dataItemCounter) => dataItemCounter - 1);
   };
 
   const addTodo = (newTodo) => {
     setData((data) => [...data, newTodo]);
+    setDataItemCounter((dataItemCounter) => dataItemCounter + 1);
   };
 
   const toggleTodo = (id) => {
@@ -40,32 +43,34 @@ const Page = () => {
     );
   };
 
-  let filtredData = [...data];
-  switch (activeTab) {
-    case '1':
-      filtredData = filtredData.filter((item) => !item.isDone);
-      break;
-    case '2':
-      filtredData = filtredData.filter((item) => item.isDone);
-      break;
-    case '3':
-      filtredData = filtredData.filter((item) => item.isImportant);
-      break;
-    case '0':
-      filtredData;
-      break;
-    default:
-      break;
-  }
+  const getFiltredData = (activeTab) => {
+    switch (activeTab) {
+      case 'unfinished':
+        return data.filter((item) => !item.isDone);
+      case 'completed':
+        return data.filter((item) => item.isDone);
+      case 'important':
+        return data.filter((item) => item.isImportant);
+      case 'all':
+        return data;
+      default:
+        break;
+    }
+  };
 
   return (
     <Container>
       <h1>Todo List App!</h1>
       <Content>
         <AddTodoListItem onAdd={addTodo} />
-        {data.length === 0 ? <h3>Todo list is empty</h3> : null}
-        <FilterTodoList activeTab={activeTab} setActiveTab={setActiveTab} />
-        <TodoList data={filtredData} onDelete={deleteTodo} onToggle={toggleTodo} />
+        <TodoList
+          data={getFiltredData(activeTab)}
+          onDelete={deleteTodo}
+          onToggle={toggleTodo}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          dataItemCounter={dataItemCounter}
+        />
       </Content>
     </Container>
   );
