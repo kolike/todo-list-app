@@ -9,8 +9,7 @@ const Row = styled.div`
 `;
 
 const FilterButtonCompleted = styled.button`
-  background-color: ${(props) =>
-    props.$isActive ? 'rgba(20, 220, 10, 0.7)' : 'white'};
+  background-color: ${(props) => (props.$isActive ? 'rgba(20, 220, 10, 0.7)' : 'white')};
   color: ${(props) => (props.$isActive ? 'white' : 'rgba(20, 220, 10, 0.7)')};
   border-radius: 3px;
   border-color: rgba(20, 220, 10, 0.7);
@@ -22,8 +21,7 @@ const FilterButtonCompleted = styled.button`
 `;
 
 const FilterButtonImportant = styled.button`
-  background-color: ${(props) =>
-    props.$isActive ? 'rgba(250, 20, 10, 0.7)' : 'white'};
+  background-color: ${(props) => (props.$isActive ? 'rgba(250, 20, 10, 0.7)' : 'white')};
   color: ${(props) => (props.$isActive ? 'white' : 'rgba(250, 20, 10, 0.7)')};
   border-radius: 3px;
   border-color: rgba(250, 20, 10, 0.7);
@@ -49,10 +47,16 @@ const FilterButtonAll = styled.button`
 const FiltersTodoList = ({ activeTab, setActiveTab }) => {
   return (
     <Row>
-      <FilterButtonCompleted onClick={() => setActiveTab('completed')}  $isActive={activeTab === 'completed'}>
+      <FilterButtonCompleted
+        onClick={() => setActiveTab('completed')}
+        $isActive={activeTab === 'completed'}
+      >
         Completed
       </FilterButtonCompleted>
-      <FilterButtonImportant onClick={() => setActiveTab('important')}  $isActive={activeTab === 'important'}>
+      <FilterButtonImportant
+        onClick={() => setActiveTab('important')}
+        $isActive={activeTab === 'important'}
+      >
         Important
       </FilterButtonImportant>
       <FilterButtonAll onClick={() => setActiveTab('all')} $isActive={activeTab === 'all'}>
