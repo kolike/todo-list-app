@@ -22,12 +22,10 @@ const Page = () => {
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
-    setDataItemCounter((dataItemCounter) => dataItemCounter - 1);
   };
 
   const addTodo = (newTodo) => {
     setData((data) => [...data, newTodo]);
-    setDataItemCounter((dataItemCounter) => dataItemCounter + 1);
   };
 
   const toggleTodo = (id) => {

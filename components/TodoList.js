@@ -9,7 +9,7 @@ const List = styled.div`
   gap: 10px;
 `;
 
-const TodoList = ({ data, onDelete, onToggle, activeTab, setActiveTab, dataItemCounter }) => {
+const TodoList = ({ data, onDelete, onToggle, activeTab, setActiveTab }) => {
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
     return (
