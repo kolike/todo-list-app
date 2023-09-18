@@ -18,6 +18,7 @@ const Content = styled.div`
 
 const Page = () => {
   const [data, setData] = useState([]);
+  const [activeTab, setActiveTab] = useState('all');
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
@@ -38,13 +39,31 @@ const Page = () => {
     );
   };
 
+  const getFilteredData = (activeTab) => {
+    switch (activeTab) {
+      case 'completed':
+        return data.filter((item) => item.isDone);
+      case 'important':
+        return data.filter((item) => item.isImportant);
+      case 'all':
+        return data;
+      default:
+        throw new Error('No such filter exists');
+    }
+  };
+
   return (
     <Container>
       <h1>Todo List App!</h1>
       <Content>
         <AddTodoListItem onAdd={addTodo} />
-        {data.length === 0 ? <h3>Todo list is empty</h3> : null}
-        <TodoList data={data} onDelete={deleteTodo} onToggle={toggleTodo} />
+        <TodoList
+          data={getFilteredData(activeTab)}
+          onDelete={deleteTodo}
+          onToggle={toggleTodo}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
       </Content>
     </Container>
   );

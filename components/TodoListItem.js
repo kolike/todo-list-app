@@ -32,12 +32,12 @@ const RemoveButton = styled.button`
 `;
 
 const TodoListItem = (props) => {
-  const { content, isImportant, isDone, onDelete, onToggle } = props;
+  const { content, isImportant, isDone = false, onDelete, onToggle } = props;
 
   return (
     <Container>
       <Row $isDone={isDone} $isImportant={isImportant}>
-        <input type="checkbox" onChange={onToggle} />
+        <input type="checkbox" onChange={onToggle} checked={isDone} />
         {content}
         {isImportant ? '(!!!)' : null}
       </Row>
