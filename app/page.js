@@ -43,7 +43,7 @@ const Page = () => {
     );
   };
 
-  const getFiltredData = (activeTab) => {
+  const getFilteredData = (activeTab) => {
     switch (activeTab) {
       case 'unfinished':
         return data.filter((item) => !item.isDone);
@@ -54,6 +54,7 @@ const Page = () => {
       case 'all':
         return data;
       default:
+        alert('no such filter exists');
         break;
     }
   };
@@ -64,7 +65,7 @@ const Page = () => {
       <Content>
         <AddTodoListItem onAdd={addTodo} />
         <TodoList
-          data={getFiltredData(activeTab)}
+          data={getFilteredData(activeTab)}
           onDelete={deleteTodo}
           onToggle={toggleTodo}
           activeTab={activeTab}

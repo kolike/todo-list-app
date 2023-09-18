@@ -8,18 +8,6 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const FilterButtonUnfinished = styled.button`
-  background-color: ${(props) =>
-    props.$activeTab === 'unfinished' ? 'rgba(249, 105, 14, 0.7)' : 'white'};
-  color: ${(props) => (props.$activeTab === 'unfinished' ? 'white' : 'rgba(249, 105, 14, 1)')};
-  border-radius: 3px;
-  border-color: rgba(249, 105, 14, 0.7);
-  &:hover {
-    background-color: rgba(249, 105, 14, 0.7);
-    color: white;
-    border-color: black;
-  }
-`;
 const FilterButtonCompleted = styled.button`
   background-color: ${(props) =>
     props.$activeTab === 'completed' ? 'rgba(20, 220, 10, 0.7)' : 'white'};
@@ -32,6 +20,7 @@ const FilterButtonCompleted = styled.button`
     border-color: black;
   }
 `;
+
 const FilterButtonImportant = styled.button`
   background-color: ${(props) =>
     props.$activeTab === 'important' ? 'rgba(250, 20, 10, 0.7)' : 'white'};
@@ -44,6 +33,7 @@ const FilterButtonImportant = styled.button`
     border-color: black;
   }
 `;
+
 const FilterButtonAll = styled.button`
   background-color: ${(props) => (props.$activeTab === 'all' ? 'rgba(20, 20, 250, 0.9)' : 'white')};
   color: ${(props) => (props.$activeTab === 'all' ? 'white' : 'rgba(20, 20, 250, 0.9)')};
@@ -59,9 +49,6 @@ const FilterButtonAll = styled.button`
 const FiltersTodoList = ({ activeTab, setActiveTab }) => {
   return (
     <Row>
-      <FilterButtonUnfinished onClick={() => setActiveTab('unfinished')} $activeTab={activeTab}>
-        Unfinished
-      </FilterButtonUnfinished>
       <FilterButtonCompleted onClick={() => setActiveTab('completed')} $activeTab={activeTab}>
         Completed
       </FilterButtonCompleted>
@@ -74,4 +61,5 @@ const FiltersTodoList = ({ activeTab, setActiveTab }) => {
     </Row>
   );
 };
+
 export default FiltersTodoList;
