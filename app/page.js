@@ -41,8 +41,6 @@ const Page = () => {
 
   const getFilteredData = (activeTab) => {
     switch (activeTab) {
-      case 'unfinished':
-        return data.filter((item) => !item.isDone);
       case 'completed':
         return data.filter((item) => item.isDone);
       case 'important':
@@ -50,8 +48,7 @@ const Page = () => {
       case 'all':
         return data;
       default:
-        alert('no such filter exists');
-        break;
+        throw new Error('No such filter exists');
     }
   };
 
