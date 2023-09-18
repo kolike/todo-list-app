@@ -47,6 +47,9 @@ const FilterButtonAll = styled.button`
 const FiltersTodoList = ({ activeTab, setActiveTab }) => {
   return (
     <Row>
+      <FilterButtonAll onClick={() => setActiveTab('all')} $isActive={activeTab === 'all'}>
+        All
+      </FilterButtonAll>
       <FilterButtonCompleted
         onClick={() => setActiveTab('completed')}
         $isActive={activeTab === 'completed'}
@@ -59,9 +62,6 @@ const FiltersTodoList = ({ activeTab, setActiveTab }) => {
       >
         Important
       </FilterButtonImportant>
-      <FilterButtonAll onClick={() => setActiveTab('all')} $isActive={activeTab === 'all'}>
-        All
-      </FilterButtonAll>
     </Row>
   );
 };
