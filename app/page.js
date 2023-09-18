@@ -1,7 +1,6 @@
 'use client';
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
-import FiltersTodoList from '@/components/FiltersTodoList';
 import { useState } from 'react';
 import styled from 'styled-components';
 
