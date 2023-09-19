@@ -10,11 +10,15 @@ const Row = styled.div`
 
 const FilterButtonCompleted = styled.button`
   background-color: ${(props) => (props.$isActive ? 'rgba(20, 220, 10, 0.7)' : 'white')};
-  color: ${(props) => (props.$isActive ? 'white' : 'rgba(20, 220, 10, 0.7)')};
+  color: ${(props) => (props.$isActive ? 'white' : 'rgba(20, 100, 10, 0.9)')};
   border-radius: 3px;
   border-color: rgba(20, 220, 10, 0.7);
   &:hover {
-    background-color: rgba(20, 220, 10, 0.7);
+    border-color: black;
+    border-width: 2px;
+  }
+  &:active {
+    background-color: rgba(20, 150, 10, 0.7);
     color: white;
     border-color: black;
   }
@@ -26,7 +30,10 @@ const FilterButtonImportant = styled.button`
   border-radius: 3px;
   border-color: rgba(250, 20, 10, 0.7);
   &:hover {
-    background-color: rgba(250, 20, 10, 0.7);
+    border-color: black;
+  }
+  &:active {
+    background-color: rgba(200, 20, 10, 0.7);
     color: white;
     border-color: black;
   }
@@ -38,7 +45,10 @@ const FilterButtonAll = styled.button`
   border-radius: 3px;
   border-color: rgba(20, 20, 250, 0.9);
   &:hover {
-    background-color: rgba(20, 20, 250, 0.9);
+    border-color: black;
+  }
+  &:active {
+    background-color: rgba(20, 20, 200, 0.9);
     color: white;
     border-color: black;
   }
@@ -47,18 +57,39 @@ const FilterButtonAll = styled.button`
 const FiltersTodoList = ({ activeTab, setActiveTab }) => {
   return (
     <Row>
-      <FilterButtonAll onClick={() => setActiveTab('all')} $isActive={activeTab === 'all'}>
+      <FilterButtonAll
+        onClick={() =>
+          setActiveTab((activeTab) => ({
+            all: !activeTab.all,
+            completed: false,
+            important: false,
+          }))
+        }
+        $isActive={activeTab.all}
+      >
         All
       </FilterButtonAll>
       <FilterButtonCompleted
-        onClick={() => setActiveTab('completed')}
-        $isActive={activeTab === 'completed'}
+        onClick={() =>
+          setActiveTab((activeTab) => ({
+            ...activeTab,
+            all: false,
+            completed: !activeTab.completed,
+          }))
+        }
+        $isActive={activeTab.completed}
       >
         Completed
       </FilterButtonCompleted>
       <FilterButtonImportant
-        onClick={() => setActiveTab('important')}
-        $isActive={activeTab === 'important'}
+        onClick={() =>
+          setActiveTab((activeTab) => ({
+            ...activeTab,
+            all: false,
+            important: !activeTab.important,
+          }))
+        }
+        $isActive={activeTab.important}
       >
         Important
       </FilterButtonImportant>

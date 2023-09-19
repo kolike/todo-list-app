@@ -18,7 +18,11 @@ const Content = styled.div`
 
 const Page = () => {
   const [data, setData] = useState([]);
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState({
+    all: false,
+    completed: false,
+    important: false,
+  });
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
@@ -40,13 +44,37 @@ const Page = () => {
   };
 
   const getFilteredData = (activeTab) => {
-    switch (activeTab) {
-      case 'completed':
+    switch (JSON.stringify(activeTab)) {
+      case JSON.stringify({
+        all: false,
+        completed: true,
+        important: false,
+      }):
         return data.filter((item) => item.isDone);
-      case 'important':
+      case JSON.stringify({
+        all: false,
+        completed: false,
+        important: true,
+      }):
         return data.filter((item) => item.isImportant);
-      case 'all':
+      case JSON.stringify({
+        all: true,
+        completed: false,
+        important: false,
+      }):
         return data;
+      case JSON.stringify({
+        all: false,
+        completed: false,
+        important: false,
+      }):
+        return data.filter((item) => !item.isImportant && !item.isDone);
+      case JSON.stringify({
+        all: false,
+        completed: true,
+        important: true,
+      }):
+        return data.filter((item) => item.isImportant && item.isDone);
       default:
         throw new Error('No such filter exists');
     }
