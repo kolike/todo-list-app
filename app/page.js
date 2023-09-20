@@ -19,9 +19,8 @@ const Content = styled.div`
 const Page = () => {
   const [data, setData] = useState([]);
   const [activeTab, setActiveTab] = useState({
-    all: false,
-    completed: false,
-    important: false,
+    completed: 'all',
+    important: 'all',
   });
 
   const deleteTodo = (id) => {
@@ -46,35 +45,59 @@ const Page = () => {
   const getFilteredData = (activeTab) => {
     switch (JSON.stringify(activeTab)) {
       case JSON.stringify({
-        all: false,
-        completed: true,
-        important: false,
+        completed: 'completed',
+        important: 'all',
       }):
         return data.filter((item) => item.isDone);
+
       case JSON.stringify({
-        all: false,
-        completed: false,
-        important: true,
+        completed: 'notCompleted',
+        important: 'all',
+      }):
+        return data.filter((item) => !item.isDone);
+
+      case JSON.stringify({
+        completed: 'all',
+        important: 'important',
       }):
         return data.filter((item) => item.isImportant);
+
       case JSON.stringify({
-        all: true,
-        completed: false,
-        important: false,
+        completed: 'all',
+        important: 'notImportant',
+      }):
+        return data.filter((item) => !item.isImportant);
+
+      case JSON.stringify({
+        completed: 'all',
+        important: 'all',
       }):
         return data;
+
       case JSON.stringify({
-        all: false,
-        completed: false,
-        important: false,
+        completed: 'notCompleted',
+        important: 'important',
       }):
-        return data.filter((item) => !item.isImportant && !item.isDone);
+        return data.filter((item) => item.isImportant && !item.isDone);
+
       case JSON.stringify({
-        all: false,
-        completed: true,
-        important: true,
+        completed: 'completed',
+        important: 'notImportant',
+      }):
+        return data.filter((item) => !item.isImportant && item.isDone);
+
+      case JSON.stringify({
+        completed: 'completed',
+        important: 'important',
       }):
         return data.filter((item) => item.isImportant && item.isDone);
+
+      case JSON.stringify({
+        completed: 'notCompleted',
+        important: 'notImportant',
+      }):
+        return data.filter((item) => !item.isImportant && !item.isDone);
+
       default:
         throw new Error('No such filter exists');
     }
