@@ -18,7 +18,7 @@ const FiltersTodoList = ({ filtersState, setFiltersState }) => {
       <Col>
         <label htmlFor="Completeness">Completeness</label>
         <select
-          onChange={(e) => setFiltersState({ ...filtersState, completed: e.target.value })}
+          onChange={(e) => setFiltersState({ ...filtersState, completeness: e.target.value })}
           name="Completeness"
         >
           <option value="all">All</option>
@@ -29,7 +29,7 @@ const FiltersTodoList = ({ filtersState, setFiltersState }) => {
       <Col>
         <label htmlFor="Importance">Importance</label>
         <select
-          onChange={(e) => setFiltersState({ ...filtersState, important: e.target.value })}
+          onChange={(e) => setFiltersState({ ...filtersState, importance: e.target.value })}
           name="Importance"
         >
           <option value="all">All</option>

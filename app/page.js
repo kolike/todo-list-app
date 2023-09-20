@@ -19,8 +19,8 @@ const Content = styled.div`
 const Page = () => {
   const [data, setData] = useState([]);
   const [filtersState, setFiltersState] = useState({
-    completed: 'all',
-    important: 'all',
+    completeness: 'all',
+    importance: 'all',
   });
 
   const deleteTodo = (id) => {
@@ -43,64 +43,25 @@ const Page = () => {
   };
 
   const getFilteredData = (filtersState) => {
-    switch (JSON.stringify(filtersState)) {
-      case JSON.stringify({
-        completed: 'completed',
-        important: 'all',
-      }):
-        return data.filter((item) => item.isDone);
+    let result = [];
 
-      case JSON.stringify({
-        completed: 'notCompleted',
-        important: 'all',
-      }):
-        return data.filter((item) => !item.isDone);
-
-      case JSON.stringify({
-        completed: 'all',
-        important: 'important',
-      }):
-        return data.filter((item) => item.isImportant);
-
-      case JSON.stringify({
-        completed: 'all',
-        important: 'notImportant',
-      }):
-        return data.filter((item) => !item.isImportant);
-
-      case JSON.stringify({
-        completed: 'all',
-        important: 'all',
-      }):
-        return data;
-
-      case JSON.stringify({
-        completed: 'notCompleted',
-        important: 'important',
-      }):
-        return data.filter((item) => item.isImportant && !item.isDone);
-
-      case JSON.stringify({
-        completed: 'completed',
-        important: 'notImportant',
-      }):
-        return data.filter((item) => !item.isImportant && item.isDone);
-
-      case JSON.stringify({
-        completed: 'completed',
-        important: 'important',
-      }):
-        return data.filter((item) => item.isImportant && item.isDone);
-
-      case JSON.stringify({
-        completed: 'notCompleted',
-        important: 'notImportant',
-      }):
-        return data.filter((item) => !item.isImportant && !item.isDone);
-
-      default:
-        throw new Error('No such filter exists');
+    if (filtersState.completeness === 'completed') {
+      result = data.filter((item) => item.isDone);
+    } else if (filtersState.completeness === 'notCompleted') {
+      result = data.filter((item) => !item.isDone);
+    } else if (filtersState.completeness === 'all') {
+      result = data;
     }
+
+    if (filtersState.importance === 'important') {
+      result = result.filter((item) => item.isImportant);
+    } else if (filtersState.importance === 'notImportant') {
+      result = result.filter((item) => !item.isImportant);
+    } else if (filtersState.importance === 'all') {
+      result = result;
+    }
+
+    return result;
   };
 
   return (
