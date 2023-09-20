@@ -9,7 +9,7 @@ const List = styled.div`
   gap: 10px;
 `;
 
-const TodoList = ({ data, onDelete, onToggle, activeTab, setActiveTab }) => {
+const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }) => {
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
     return (
@@ -24,7 +24,7 @@ const TodoList = ({ data, onDelete, onToggle, activeTab, setActiveTab }) => {
 
   return (
     <>
-      <FiltersTodoList activeTab={activeTab} setActiveTab={setActiveTab} />
+      <FiltersTodoList filtersState={filtersState} setFiltersState={setFiltersState} />
       {data.length > 0 ? <List>{elements}</List> : <h3>Todo list is empty</h3>}
     </>
   );

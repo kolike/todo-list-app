@@ -18,7 +18,7 @@ const Content = styled.div`
 
 const Page = () => {
   const [data, setData] = useState([]);
-  const [activeTab, setActiveTab] = useState({
+  const [filtersState, setFiltersState] = useState({
     completed: 'all',
     important: 'all',
   });
@@ -42,8 +42,8 @@ const Page = () => {
     );
   };
 
-  const getFilteredData = (activeTab) => {
-    switch (JSON.stringify(activeTab)) {
+  const getFilteredData = (filtersState) => {
+    switch (JSON.stringify(filtersState)) {
       case JSON.stringify({
         completed: 'completed',
         important: 'all',
@@ -109,11 +109,11 @@ const Page = () => {
       <Content>
         <AddTodoListItem onAdd={addTodo} />
         <TodoList
-          data={getFilteredData(activeTab)}
+          data={getFilteredData(filtersState)}
           onDelete={deleteTodo}
           onToggle={toggleTodo}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          filtersState={filtersState}
+          setFiltersState={setFiltersState}
         />
       </Content>
     </Container>
