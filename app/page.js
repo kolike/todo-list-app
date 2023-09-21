@@ -1,7 +1,7 @@
 'use client';
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -22,19 +22,81 @@ const Page = () => {
     completeness: 'all',
     importance: 'all',
   });
+  const url = 'http://localhost:3000/api/todos/';
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const responce = await fetch(url);
+      const json = await responce.json();
+      setData(json);
+    } catch {
+      throw new Error('Error getting file ');
+    }
+  };
+
+  const postTodo = async (data) => {
+    try {
+      const response = await fetch(url + 'add', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const json = await response.json();
+      console.log('Successful file upload:', json);
+    } catch {
+      throw new Error('Error sending file ');
+    }
+  };
+
+  const removeTodo = async (id) => {
+    try {
+      const response = await fetch(`${url + id}`, {
+        method: 'DELETE',
+      });
+      const json = await response.json();
+      console.log('Successful file delete:', json);
+    } catch {
+      throw new Error('Error deleting file');
+    }
+  };
+
+  const updateTodo = async (item, id) => {
+    try {
+      const response = await fetch(`${url + id}`, {
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const json = await response.json();
+      console.log('Successful file toggle:', JSON.stringify(json));
+    } catch {
+      throw new Error('Error toggling file');
+    }
+  };
 
   const deleteTodo = (id) => {
     setData((data) => data.filter((item) => item.id !== id));
+    removeTodo(id);
   };
 
   const addTodo = (newTodo) => {
     setData((data) => [...data, newTodo]);
+    postTodo(newTodo);
   };
 
   const toggleTodo = (id) => {
     setData((data) =>
       data.map((item) => {
         if (item.id === id) {
+          updateTodo({ ...item, isDone: !item.isDone }, id);
           return { ...item, isDone: !item.isDone };
         }
         return item;
