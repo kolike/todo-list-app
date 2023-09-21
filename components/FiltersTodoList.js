@@ -7,61 +7,36 @@ const Row = styled.div`
   gap: 5px;
   align-items: center;
 `;
-
-const FilterButtonCompleted = styled.button`
-  background-color: ${(props) => (props.$isActive ? 'rgba(20, 220, 10, 0.7)' : 'white')};
-  color: ${(props) => (props.$isActive ? 'white' : 'rgba(20, 220, 10, 0.7)')};
-  border-radius: 3px;
-  border-color: rgba(20, 220, 10, 0.7);
-  &:hover {
-    background-color: rgba(20, 220, 10, 0.7);
-    color: white;
-    border-color: black;
-  }
+const Col = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-const FilterButtonImportant = styled.button`
-  background-color: ${(props) => (props.$isActive ? 'rgba(250, 20, 10, 0.7)' : 'white')};
-  color: ${(props) => (props.$isActive ? 'white' : 'rgba(250, 20, 10, 0.7)')};
-  border-radius: 3px;
-  border-color: rgba(250, 20, 10, 0.7);
-  &:hover {
-    background-color: rgba(250, 20, 10, 0.7);
-    color: white;
-    border-color: black;
-  }
-`;
-
-const FilterButtonAll = styled.button`
-  background-color: ${(props) => (props.$isActive ? 'rgba(20, 20, 250, 0.9)' : 'white')};
-  color: ${(props) => (props.$isActive ? 'white' : 'rgba(20, 20, 250, 0.9)')};
-  border-radius: 3px;
-  border-color: rgba(20, 20, 250, 0.9);
-  &:hover {
-    background-color: rgba(20, 20, 250, 0.9);
-    color: white;
-    border-color: black;
-  }
-`;
-
-const FiltersTodoList = ({ activeTab, setActiveTab }) => {
+const FiltersTodoList = ({ filtersState, setFiltersState }) => {
   return (
     <Row>
-      <FilterButtonAll onClick={() => setActiveTab('all')} $isActive={activeTab === 'all'}>
-        All
-      </FilterButtonAll>
-      <FilterButtonCompleted
-        onClick={() => setActiveTab('completed')}
-        $isActive={activeTab === 'completed'}
-      >
-        Completed
-      </FilterButtonCompleted>
-      <FilterButtonImportant
-        onClick={() => setActiveTab('important')}
-        $isActive={activeTab === 'important'}
-      >
-        Important
-      </FilterButtonImportant>
+      <Col>
+        <label htmlFor="Completeness">Completeness</label>
+        <select
+          onChange={(e) => setFiltersState({ ...filtersState, completeness: e.target.value })}
+          name="Completeness"
+        >
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="notCompleted">Not Completed</option>
+        </select>
+      </Col>
+      <Col>
+        <label htmlFor="Importance">Importance</label>
+        <select
+          onChange={(e) => setFiltersState({ ...filtersState, importance: e.target.value })}
+          name="Importance"
+        >
+          <option value="all">All</option>
+          <option value="important">Important</option>
+          <option value="notImportant">Not Important</option>
+        </select>
+      </Col>
     </Row>
   );
 };
