@@ -25,32 +25,32 @@ const Page = () => {
 
   const getData = async () => {
     const responce = await fetch('/api/todos/');
-    const json = await responce.json();
-    setData(json);
+    const data = await responce.json();
+    setData(data);
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  const postTodo = async (data) => {
+  const postTodo = async (newTodo) => {
     const response = await fetch('/api/todos/add', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(newTodo),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    const json = await response.json();
-    setData(json);
+    const data = await response.json();
+    setData(data);
   };
 
   const removeTodo = async (id) => {
     const response = await fetch(`/api/todos/${id}`, {
       method: 'DELETE',
     });
-    const json = await response.json();
-    setData(json);
+    const data = await response.json();
+    setData(data);
   };
 
   const updateTodo = async (item, id) => {
@@ -61,20 +61,12 @@ const Page = () => {
         'Content-Type': 'application/json',
       },
     });
-    const json = await response.json();
-    setData(json);
-  };
-
-  const deleteTodo = (id) => {
-    removeTodo(id);
-  };
-
-  const addTodo = (newTodo) => {
-    postTodo(newTodo);
+    const data = await response.json();
+    setData(data);
   };
 
   const toggleTodo = (id) => {
-    data.map((item) => {
+    data.forEach((item) => {
       if (item.id === id) {
         updateTodo({ ...item, isDone: !item.isDone }, id);
       }
@@ -108,10 +100,10 @@ const Page = () => {
     <Container>
       <h1>Todo List App!</h1>
       <Content>
-        <AddTodoListItem onAdd={addTodo} />
+        <AddTodoListItem onAdd={postTodo} />
         <TodoList
           data={getFilteredData(filtersState)}
-          onDelete={deleteTodo}
+          onDelete={removeTodo}
           onToggle={toggleTodo}
           filtersState={filtersState}
           setFiltersState={setFiltersState}
