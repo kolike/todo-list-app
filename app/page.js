@@ -24,8 +24,8 @@ const Page = () => {
   });
 
   const getData = async () => {
-    const responce = await fetch('/api/todos/');
-    const data = await responce.json();
+    const response = await fetch('/api/todos/');
+    const data = await response.json();
     setData(data);
   };
 
@@ -33,7 +33,7 @@ const Page = () => {
     getData();
   }, []);
 
-  const postTodo = async (newTodo) => {
+  const addTodo = async (newTodo) => {
     const response = await fetch('/api/todos/add', {
       method: 'POST',
       body: JSON.stringify(newTodo),
@@ -45,7 +45,7 @@ const Page = () => {
     setData(data);
   };
 
-  const removeTodo = async (id) => {
+  const deleteTodo = async (id) => {
     const response = await fetch(`/api/todos/${id}`, {
       method: 'DELETE',
     });
@@ -66,12 +66,8 @@ const Page = () => {
   };
 
   const toggleTodo = (id) => {
-    data.forEach((item) => {
-      if (item.id === id) {
-        updateTodo({ ...item, isDone: !item.isDone }, id);
-      }
-      return item;
-    });
+    const elem = data.find((item) => item.id === id);
+    updateTodo({ ...elem, isDone: !elem.isDone }, id);
   };
 
   const getFilteredData = (filtersState) => {
@@ -100,10 +96,10 @@ const Page = () => {
     <Container>
       <h1>Todo List App!</h1>
       <Content>
-        <AddTodoListItem onAdd={postTodo} />
+        <AddTodoListItem onAdd={addTodo} />
         <TodoList
           data={getFilteredData(filtersState)}
-          onDelete={removeTodo}
+          onDelete={deleteTodo}
           onToggle={toggleTodo}
           filtersState={filtersState}
           setFiltersState={setFiltersState}
