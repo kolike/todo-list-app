@@ -1,7 +1,6 @@
 import TodoListItem from './TodoListItem';
 import FiltersTodoList from './FiltersTodoList';
 import styled from 'styled-components';
-import { useEffect } from 'react';
 
 const List = styled.div`
   display: flex;
