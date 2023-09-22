@@ -36,6 +36,7 @@ const AddTodoListItem = ({ onAdd }) => {
       id: uuidv4(),
       content,
       isImportant,
+      isDone: false,
     };
     onAdd(newTodo);
   };

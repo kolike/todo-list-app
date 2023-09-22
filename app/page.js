@@ -1,7 +1,7 @@
 'use client';
 import TodoList from '../components/TodoList';
 import AddTodoListItem from '../components/AddTodoListItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -23,23 +23,51 @@ const Page = () => {
     importance: 'all',
   });
 
-  const deleteTodo = (id) => {
-    setData((data) => data.filter((item) => item.id !== id));
+  const getData = async () => {
+    const response = await fetch('/api/todos/');
+    const data = await response.json();
+    setData(data);
   };
 
-  const addTodo = (newTodo) => {
-    setData((data) => [...data, newTodo]);
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const addTodo = async (newTodo) => {
+    const response = await fetch('/api/todos/add', {
+      method: 'POST',
+      body: JSON.stringify(newTodo),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    setData(data);
+  };
+
+  const deleteTodo = async (id) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    setData(data);
+  };
+
+  const updateTodo = async (item, id) => {
+    const response = await fetch(`/api/todos/${id}`, {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    setData(data);
   };
 
   const toggleTodo = (id) => {
-    setData((data) =>
-      data.map((item) => {
-        if (item.id === id) {
-          return { ...item, isDone: !item.isDone };
-        }
-        return item;
-      }),
-    );
+    const elem = data.find((item) => item.id === id);
+    updateTodo({ ...elem, isDone: !elem.isDone }, id);
   };
 
   const getFilteredData = (filtersState) => {
