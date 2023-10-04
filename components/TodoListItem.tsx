@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -13,11 +14,14 @@ const Container = styled.div`
 `;
 
 const Row = styled.div`
-  text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
-  color: ${(props) => (props.$isImportant ? 'red' : 'black')};
+  
   display: flex;
   flex-direction: row;
 `;
+
+// text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
+//   color: ${(props) => (props.$isImportant ? 'red' : 'black')};
+
 
 const RemoveButton = styled.button`
   background-color: white;
@@ -36,7 +40,8 @@ const TodoListItem = (props) => {
 
   return (
     <Container>
-      <Row $isDone={isDone} $isImportant={isImportant}>
+      {/* $isDone={isDone} $isImportant={isImportant} */}
+      <Row >
         <input type="checkbox" onChange={onToggle} checked={isDone} />
         {content}
         {isImportant ? '(!!!)' : null}

@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import styled from 'styled-components';
+import React from 'react';
 
 const Form = styled.form`
   display: flex;
@@ -30,7 +31,7 @@ const AddTodoListItem = ({ onAdd }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e:any) => {
     e.preventDefault();
     const newTodo = {
       id: uuidv4(),
@@ -56,7 +57,7 @@ const AddTodoListItem = ({ onAdd }) => {
         <input
           id="isImportant"
           type="checkbox"
-          value={isImportant}
+          // value={isImportant}
           onChange={() => setIsImportant((isImportant) => !isImportant)}
         />
         <label htmlFor="isImportant">Important task?</label>
