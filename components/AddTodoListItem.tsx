@@ -31,7 +31,7 @@ const AddTodoListItem = ({ onAdd }) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 
-  const onSubmitHandler = (e:any) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newTodo = {
       id: uuidv4(),
@@ -57,7 +57,7 @@ const AddTodoListItem = ({ onAdd }) => {
         <input
           id="isImportant"
           type="checkbox"
-          // value={isImportant}
+          checked={isImportant}
           onChange={() => setIsImportant((isImportant) => !isImportant)}
         />
         <label htmlFor="isImportant">Important task?</label>
