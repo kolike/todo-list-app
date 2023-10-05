@@ -8,6 +8,7 @@ const Row = styled.div`
   gap: 5px;
   align-items: center;
 `;
+
 const Col = styled.div`
   display: flex;
   flex-direction: column;
