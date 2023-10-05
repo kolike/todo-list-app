@@ -5,7 +5,7 @@ export async function POST(request, { params }) {
   let todos;
   try {
     const rawdata = fs.readFileSync('app/api/todos/todos.json');
-    todos = JSON.parse(rawdata);
+    todos = JSON.parse(String(rawdata));
   } catch {
     return NextResponse.json({ message: 'Todo list is empty' }, { status: 500 });
   }
@@ -26,7 +26,7 @@ export async function DELETE(_, { params }) {
   let todos;
   try {
     const rawdata = fs.readFileSync('app/api/todos/todos.json');
-    todos = JSON.parse(rawdata);
+    todos = JSON.parse(String(rawdata));
   } catch {
     return NextResponse.json({ message: 'Todo list is empty' }, { status: 500 });
   }

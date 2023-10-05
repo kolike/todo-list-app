@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -12,11 +13,11 @@ const Container = styled.div`
   }
 `;
 
-const Row = styled.div`
-  text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
-  color: ${(props) => (props.$isImportant ? 'red' : 'black')};
+const Row = styled.div<{ $isDone?: boolean; $isImportant: boolean }>`
   display: flex;
   flex-direction: row;
+  text-decoration: ${(props) => (props.$isDone ? 'line-through' : 'none')};
+  color: ${(props) => (props.$isImportant ? 'red' : 'black')};
 `;
 
 const RemoveButton = styled.button`

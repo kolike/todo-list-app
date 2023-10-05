@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const Row = styled.div`
   display: flex;
@@ -7,6 +8,7 @@ const Row = styled.div`
   gap: 5px;
   align-items: center;
 `;
+
 const Col = styled.div`
   display: flex;
   flex-direction: column;
