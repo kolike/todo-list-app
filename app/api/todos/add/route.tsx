@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as fs from 'fs';
 
-export async function POST(request) {
+export async function POST(request: any) {
   let todos;
   try {
     const rawdata = fs.readFileSync('app/api/todos/todos.json');
