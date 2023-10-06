@@ -9,7 +9,7 @@ export const metadata = {
   description: 'my todo list app',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }:{children: React.ReactNode}) {
   return (
     <html lang="en">
       <body style={{ backgroundColor: 'rgba(255, 255, 204 ,0.7)' }} className={inter.className}>

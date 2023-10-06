@@ -17,12 +17,25 @@ const Content = styled.div`
   gap: 20px;
 `;
 
+export type Item = { id:string,
+      content:string,
+      isImportant:boolean,
+      isDone: boolean,
+    };
+
+  export  type FilterState = {
+      completeness:string,
+      importance:string
+    }
+
 const Page = () => {
   const [data, setData] = useState([]);
   const [filtersState, setFiltersState] = useState({
     completeness: 'all',
     importance: 'all',
   });
+
+    
 
   const getData = async () => {
     const response = await fetch('/api/todos/');
@@ -34,7 +47,7 @@ const Page = () => {
     getData();
   }, []);
 
-  const addTodo = async (newTodo) => {
+  const addTodo = async (newTodo :Item) => {
     const response = await fetch('/api/todos/add', {
       method: 'POST',
       body: JSON.stringify(newTodo),
@@ -46,7 +59,7 @@ const Page = () => {
     setData(data);
   };
 
-  const deleteTodo = async (id) => {
+  const deleteTodo = async (id:string) => {
     const response = await fetch(`/api/todos/${id}`, {
       method: 'DELETE',
     });
@@ -54,7 +67,7 @@ const Page = () => {
     setData(data);
   };
 
-  const updateTodo = async (item, id) => {
+  const updateTodo = async (item:Item, id:string) => {
     const response = await fetch(`/api/todos/${id}`, {
       method: 'POST',
       body: JSON.stringify(item),
@@ -66,18 +79,19 @@ const Page = () => {
     setData(data);
   };
 
-  const toggleTodo = (id) => {
-    const elem = data.find((item) => item.id === id);
+  const toggleTodo = (id:string) => {
+    const elem = data.find((item:Item) => item.id === id);
+ //   @ts-ignore
     updateTodo({ ...elem, isDone: !elem.isDone }, id);
   };
 
-  const getFilteredData = (filtersState) => {
-    let result = [];
+  const getFilteredData = (filtersState: FilterState) => {
+    let result: Item[] = [];
 
     if (filtersState.completeness === 'completed') {
-      result = data.filter((item) => item.isDone);
+      result = data.filter((item:Item) => item.isDone);
     } else if (filtersState.completeness === 'notCompleted') {
-      result = data.filter((item) => !item.isDone);
+      result = data.filter((item:Item) => !item.isDone);
     } else if (filtersState.completeness === 'all') {
       result = data;
     }
@@ -91,6 +105,7 @@ const Page = () => {
     }
 
     return result;
+    
   };
 
   return (

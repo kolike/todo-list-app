@@ -2,6 +2,7 @@ import TodoListItem from './TodoListItem';
 import FiltersTodoList from './FiltersTodoList';
 import styled from 'styled-components';
 import React from 'react';
+import type { Item, FilterState } from '../app/page';
 
 const List = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const List = styled.div`
 `;
 
 const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }) => {
-  const elements = data.map((item) => {
+  const elements = data.map((item:Item) => {
     const { id, ...itemProps } = item;
     return (
       <TodoListItem
