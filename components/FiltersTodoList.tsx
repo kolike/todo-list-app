@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import { FiltersState } from '../app/page';
 
 const Row = styled.div`
   display: flex;
@@ -14,7 +15,12 @@ const Col = styled.div`
   flex-direction: column;
 `;
 
-const FiltersTodoList = ({ filtersState, setFiltersState }) => {
+type Props = {
+  filtersState: FiltersState;
+  setFiltersState: { FiltersState: FiltersState };
+};
+
+const FiltersTodoList = ({ filtersState, setFiltersState }: Props) => {
   return (
     <Row>
       <Col>
