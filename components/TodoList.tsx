@@ -13,15 +13,10 @@ const List = styled.div`
 
 type Props = {
   data: Item[];
-  onDelete: (id: string) => Promise<void>;
+  onDelete: (id: string) => void;
   onToggle: (id: string) => void;
   filtersState: FiltersState;
-  setFiltersState: React.Dispatch<
-    React.SetStateAction<{
-      completeness: string;
-      importance: string;
-    }>
-  >;
+  setFiltersState: React.Dispatch<React.SetStateAction<FiltersState>>;
 };
 
 const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }: Props) => {
@@ -31,7 +26,6 @@ const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }: P
       <TodoListItem
         key={id}
         {...itemProps}
-        id={id}
         onDelete={() => onDelete(id)}
         onToggle={() => onToggle(id)}
       />

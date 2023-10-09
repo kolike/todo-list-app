@@ -28,7 +28,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-type Props = { onAdd: (arg0: Item) => void };
+type Props = { onAdd: (newTodo: Item) => void };
 
 const AddTodoListItem = ({ onAdd }: Props) => {
   const [content, setContent] = useState('');

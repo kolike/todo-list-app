@@ -36,22 +36,21 @@ type Props = {
   content: React.ReactNode;
   isImportant: boolean;
   isDone: boolean;
-  id: string;
-  onDelete: (id: string) => Promise<void>;
-  onToggle: (id: string) => void;
+  onDelete: () => void;
+  onToggle: () => void;
 };
 
 const TodoListItem = (props: Props) => {
-  const { content, isImportant, isDone = false, onDelete, onToggle, id } = props;
+  const { content, isImportant, isDone = false, onDelete, onToggle } = props;
 
   return (
     <Container>
       <Row $isDone={isDone} $isImportant={isImportant}>
-        <input type="checkbox" onChange={() => onToggle(id)} checked={isDone} />
+        <input type="checkbox" onChange={() => onToggle()} checked={isDone} />
         {content}
         {isImportant ? '(!!!)' : null}
       </Row>
-      <RemoveButton onClick={() => onDelete(id)}>Remove</RemoveButton>
+      <RemoveButton onClick={() => onDelete()}>Remove</RemoveButton>
     </Container>
   );
 };
