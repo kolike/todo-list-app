@@ -17,7 +17,12 @@ const Col = styled.div`
 
 type Props = {
   filtersState: FiltersState;
-  setFiltersState: { FiltersState: FiltersState };
+  setFiltersState: React.Dispatch<
+    React.SetStateAction<{
+      completeness: string;
+      importance: string;
+    }>
+  >;
 };
 
 const FiltersTodoList = ({ filtersState, setFiltersState }: Props) => {

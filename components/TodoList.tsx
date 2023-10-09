@@ -11,13 +11,27 @@ const List = styled.div`
   gap: 10px;
 `;
 
-const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }) => {
+type Props = {
+  data: Item[];
+  onDelete: (id: string) => Promise<void>;
+  onToggle: (id: string) => void;
+  filtersState: FiltersState;
+  setFiltersState: React.Dispatch<
+    React.SetStateAction<{
+      completeness: string;
+      importance: string;
+    }>
+  >;
+};
+
+const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }: Props) => {
   const elements = data.map((item: Item) => {
     const { id, ...itemProps } = item;
     return (
       <TodoListItem
         key={id}
         {...itemProps}
+        id={id}
         onDelete={() => onDelete(id)}
         onToggle={() => onToggle(id)}
       />

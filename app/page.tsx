@@ -26,7 +26,7 @@ export type FiltersState = {
 
 const Page = () => {
   const [data, setData] = useState([]);
-  const [filtersState, setFiltersState] = useState<FiltersState>({
+  const [filtersState, setFiltersState] = useState({
     completeness: 'all',
     importance: 'all',
   });
