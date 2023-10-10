@@ -25,7 +25,7 @@ export type FiltersState = {
 };
 
 const Page = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Item[]>([]);
   const [filtersState, setFiltersState] = useState({
     completeness: 'all',
     importance: 'all',
@@ -75,8 +75,9 @@ const Page = () => {
 
   const toggleTodo = (id: string) => {
     const elem = data.find((item: Item) => item.id === id);
-    //   @ts-ignore
-    updateTodo({ ...elem, isDone: !elem.isDone }, id);
+    if (elem) {
+      updateTodo({ ...elem, isDone: !elem.isDone }, id);
+    }
   };
 
   const getFilteredData = (filtersState: FiltersState) => {
