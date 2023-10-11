@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import styled from 'styled-components';
 import React from 'react';
+import type { Item } from '../app/page';
 
 const Form = styled.form`
   display: flex;
@@ -27,7 +28,9 @@ const SubmitButton = styled.button`
   }
 `;
 
-const AddTodoListItem = ({ onAdd }) => {
+type Props = { onAdd: (newTodo: Item) => void };
+
+const AddTodoListItem = ({ onAdd }: Props) => {
   const [content, setContent] = useState('');
   const [isImportant, setIsImportant] = useState(false);
 

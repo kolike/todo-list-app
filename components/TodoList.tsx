@@ -2,6 +2,7 @@ import TodoListItem from './TodoListItem';
 import FiltersTodoList from './FiltersTodoList';
 import styled from 'styled-components';
 import React from 'react';
+import type { Item, FiltersState } from '../app/page';
 
 const List = styled.div`
   display: flex;
@@ -10,8 +11,16 @@ const List = styled.div`
   gap: 10px;
 `;
 
-const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }) => {
-  const elements = data.map((item) => {
+type Props = {
+  data: Item[];
+  onDelete: (id: string) => void;
+  onToggle: (id: string) => void;
+  filtersState: FiltersState;
+  setFiltersState: React.Dispatch<React.SetStateAction<FiltersState>>;
+};
+
+const TodoList = ({ data, onDelete, onToggle, filtersState, setFiltersState }: Props) => {
+  const elements = data.map((item: Item) => {
     const { id, ...itemProps } = item;
     return (
       <TodoListItem

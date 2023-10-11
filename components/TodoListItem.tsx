@@ -32,17 +32,25 @@ const RemoveButton = styled.button`
   }
 `;
 
-const TodoListItem = (props) => {
+type Props = {
+  content: React.ReactNode;
+  isImportant: boolean;
+  isDone: boolean;
+  onDelete: () => void;
+  onToggle: () => void;
+};
+
+const TodoListItem = (props: Props) => {
   const { content, isImportant, isDone = false, onDelete, onToggle } = props;
 
   return (
     <Container>
       <Row $isDone={isDone} $isImportant={isImportant}>
-        <input type="checkbox" onChange={onToggle} checked={isDone} />
+        <input type="checkbox" onChange={() => onToggle()} checked={isDone} />
         {content}
         {isImportant ? '(!!!)' : null}
       </Row>
-      <RemoveButton onClick={onDelete}>Remove</RemoveButton>
+      <RemoveButton onClick={() => onDelete()}>Remove</RemoveButton>
     </Container>
   );
 };
